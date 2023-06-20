@@ -1,6 +1,6 @@
-train: ../../geese_vid_1/train/
-test: ../../geese_vid_2/
-val: ../../geese_vid_1/val/
+train: ../geese_vid_1/train/
+test: ../geese_vid_2/
+val: ../geese_vid_1/val/
 
 # Number of classes
 nc: 1
