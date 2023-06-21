@@ -391,7 +391,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         self.mosaic_border = [-img_size // 2, -img_size // 2]
         self.stride = stride
         
-        self.img_path = '/content/geese_vid_1/train/' #zjq the path for 512*512 images
+        self.img_path = './geese_vid_1/train/' #zjq the path for 512*512 images
 
 
         # with open(path, "r") as file:
