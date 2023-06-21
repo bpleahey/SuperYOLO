@@ -403,10 +403,13 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         #     for j in range(len(self.img_files)):
         #         self.img_files[j] = self.img_path + self.img_files[j].rstrip() + '_co.png' #self.img_files[j].rstrip() + '_co.png'  #self.img_path + self.img_files[j].rstrip() + '_co.png'
 
+        self.img_files = [file for file in os.listdir(path) if file.endswith('_co.jpg')]
+
         # Check cache
         self.label_files = img2label_paths(self.img_files)  # labels
         self.ir_files = img2ir_paths(self.img_files)
         print(self.label_files)
+        print(self.ir_files)
         cache_path = Path(self.label_files[0]).parent.with_suffix('.cache')  # cached labels
         if cache_path.is_file():
             cache = torch.load(cache_path)  # load
