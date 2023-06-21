@@ -402,6 +402,8 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 
         all_files = os.listdir(path)
 
+        print(all_files[0])
+
         if("frame82" in all_files[0]):
             self.img_path = '../geese_vid_1/val/'
         else:
