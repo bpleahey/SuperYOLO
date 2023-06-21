@@ -390,8 +390,6 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         self.mosaic = self.augment and not self.rect  # load 4 images at a time into a mosaic (only during training)
         self.mosaic_border = [-img_size // 2, -img_size // 2]
         self.stride = stride
-        
-        self.img_path = '../geese_vid_1/train/' #zjq the path for 512*512 images
 
 
         # with open(path, "r") as file:
@@ -402,7 +400,15 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         #     for j in range(len(self.img_files)):
         #         self.img_files[j] = self.img_path + self.img_files[j].rstrip() + '_co.png' #self.img_files[j].rstrip() + '_co.png'  #self.img_path + self.img_files[j].rstrip() + '_co.png'
 
-        self.img_files = [self.img_path + file for file in os.listdir(path) if file.endswith('_co.jpg')]
+        all_files = os.listdir(path)
+
+        if("frame82" in all_files[0]):
+            self.img_path = '../geese_vid_1/val/'
+        else:
+            self.img_path = '../geese_vid_1/train/'
+        
+        self.img_files = [self.img_path + file for file in all_files if file.endswith('_co.jpg')]
+
 
         # Check cache
         self.label_files = img2label_paths(self.img_files)  # labels
