@@ -400,11 +400,11 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         #     for j in range(len(self.img_files)):
         #         self.img_files[j] = self.img_path + self.img_files[j].rstrip() + '_co.png' #self.img_files[j].rstrip() + '_co.png'  #self.img_path + self.img_files[j].rstrip() + '_co.png'
 
-        all_files = os.listdir(path)
+        all_files = os.listdir(path).sort
 
         print(all_files[0])
 
-        if("frame82" in all_files[0]):
+        if("frame146" in all_files[0]):
             self.img_path = '../geese_vid_1/val/'
         else:
             self.img_path = '../geese_vid_1/train/'
