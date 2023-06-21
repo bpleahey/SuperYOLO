@@ -400,7 +400,9 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         #     for j in range(len(self.img_files)):
         #         self.img_files[j] = self.img_path + self.img_files[j].rstrip() + '_co.png' #self.img_files[j].rstrip() + '_co.png'  #self.img_path + self.img_files[j].rstrip() + '_co.png'
 
-        all_files = os.listdir(path).sort
+        all_files = os.listdir(path)
+
+        all_files.sort()
 
         print(all_files[0])
 
