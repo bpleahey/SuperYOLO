@@ -686,6 +686,8 @@ class LoadImagesAndLabels_sr(Dataset):  # for training/testing
         self.mosaic_border = [-img_size // 2, -img_size // 2]
         self.stride = stride
 
+        print(path)
+
         with open(path, "r") as file:
             self.img_files = file.readlines()
             # for i in dele:
