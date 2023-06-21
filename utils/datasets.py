@@ -411,7 +411,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         self.ir_files = img2ir_paths(self.img_files)
         print(Path(self.label_files[0]).parent)
         print(type(Path(self.label_files[0]).parent))
-        cache_path = Path(self.label_files[0]).parent.with_suffix('.cache')  # cached labels
+        cache_path = Path(self.label_files[0]).with_suffix('.cache')  # cached labels
         if cache_path.is_file():
             cache = torch.load(cache_path)  # load
             if cache['hash'] != get_hash(self.label_files + self.img_files + self.ir_files) or 'results' not in cache:  # changed #zjq
