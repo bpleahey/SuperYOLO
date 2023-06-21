@@ -395,13 +395,15 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
             self.img_path = '/home/data/zhangjiaqing/dataset/VEDAI_1024/images/' #zjq the path for 1024*1024 images
 
 
-        with open(path, "r") as file:
-            self.img_files = file.readlines()
-            # for i in dele:
-            #     if i+'\n' in self.img_files:
-            #         self.img_files.remove(i+'\n')
-            for j in range(len(self.img_files)):
-                self.img_files[j] = self.img_path + self.img_files[j].rstrip() + '_co.png' #self.img_files[j].rstrip() + '_co.png'  #self.img_path + self.img_files[j].rstrip() + '_co.png'
+        # with open(path, "r") as file:
+        #     self.img_files = file.readlines()
+        #     # for i in dele:
+        #     #     if i+'\n' in self.img_files:
+        #     #         self.img_files.remove(i+'\n')
+        #     for j in range(len(self.img_files)):
+        #         self.img_files[j] = self.img_path + self.img_files[j].rstrip() + '_co.png' #self.img_files[j].rstrip() + '_co.png'  #self.img_path + self.img_files[j].rstrip() + '_co.png'
+
+        self.img_files = [file for file in os.listdir(path) if file.endswith('_co.jpg')]
 
         # Check cache
         self.label_files = img2label_paths(self.img_files)  # labels
