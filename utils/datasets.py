@@ -405,6 +405,8 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 
         self.img_files = [file for file in os.listdir(path) if file.endswith('_co.jpg')]
 
+        print(self.img_files)
+
         # Check cache
         self.label_files = img2label_paths(self.img_files)  # labels
         self.ir_files = img2ir_paths(self.img_files)
