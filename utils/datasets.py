@@ -696,9 +696,7 @@ class LoadImagesAndLabels_sr(Dataset):  # for training/testing
         #     for j in range(len(self.img_files)):
         #         self.img_files[j] = self.img_files[j].rstrip() + '_co.png'  #self.img_path + self.img_files[j].rstrip() + '_co.png'
 
-        self.img_files = [path + file for file in os.listdir(path) if file.endswith('_co.png')]
-
-        print(self.img_files)
+        self.img_files = [path + file for file in os.listdir(path) if file.endswith('_co.jpg')]
 
         # Check cache
         self.label_files = img2label_paths(self.img_files)  # labels
