@@ -390,10 +390,8 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         self.mosaic = self.augment and not self.rect  # load 4 images at a time into a mosaic (only during training)
         self.mosaic_border = [-img_size // 2, -img_size // 2]
         self.stride = stride
-        if hr_input== False:
-            self.img_path = '../geese_vid_1/train/' #zjq the path for 512*512 images
-        else:
-            self.img_path = '../geese_vid_1/train/' #zjq the path for 1024*1024 images
+        
+        self.img_path = '/content/geese_vid_1/train/' #zjq the path for 512*512 images
 
 
         # with open(path, "r") as file:
