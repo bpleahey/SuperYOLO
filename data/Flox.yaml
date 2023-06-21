@@ -1,7 +1,7 @@
 train: ../geese_vid_1/train/
 test: ../geese_vid_2/
 #val: ../geese_vid_1/val/
-test: ../geese_vid_1/train/
+val: ../geese_vid_1/train/
 
 # Number of classes
 nc: 1
