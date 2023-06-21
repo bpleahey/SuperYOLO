@@ -406,7 +406,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 
         print(all_files[0])
 
-        if("frame146" in all_files[0]):
+        if("frame101" in all_files[0]):
             self.img_path = '../geese_vid_1/val/'
         else:
             self.img_path = '../geese_vid_1/train/'
