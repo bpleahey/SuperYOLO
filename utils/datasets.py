@@ -391,9 +391,9 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         self.mosaic_border = [-img_size // 2, -img_size // 2]
         self.stride = stride
         if hr_input== False:
-            self.img_path = '/home/data/zhangjiaqing/dataset/VEDAI/images/' #zjq the path for 512*512 images
+            self.img_path = '../geese_vid_1/train/' #zjq the path for 512*512 images
         else:
-            self.img_path = '/home/data/zhangjiaqing/dataset/VEDAI_1024/images/' #zjq the path for 1024*1024 images
+            self.img_path = '../geese_vid_1/train/' #zjq the path for 1024*1024 images
 
 
         # with open(path, "r") as file:
@@ -404,13 +404,11 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         #     for j in range(len(self.img_files)):
         #         self.img_files[j] = self.img_path + self.img_files[j].rstrip() + '_co.png' #self.img_files[j].rstrip() + '_co.png'  #self.img_path + self.img_files[j].rstrip() + '_co.png'
 
-        self.img_files = [file for file in os.listdir(path) if file.endswith('_co.jpg')]
+        self.img_files = [self.img_path + file for file in os.listdir(path) if file.endswith('_co.jpg')]
 
         # Check cache
         self.label_files = img2label_paths(self.img_files)  # labels
         self.ir_files = img2ir_paths(self.img_files)
-        print(self.img_files)
-        print(self.label_files)
         cache_path = Path(self.label_files[0]).parent.with_suffix('.cache')  # cached labels
         if cache_path.is_file():
             cache = torch.load(cache_path)  # load
