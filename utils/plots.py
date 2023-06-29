@@ -136,10 +136,10 @@ def plot_images(images, targets, paths=None, fname='images.png', names=None, max
         w = math.ceil(scale_factor * w)
 
     colors = color_list()  # list of colors
-    print(colors)
     mosaic = np.full((int(ns * h), int(ns * w), 3), 255, dtype=np.uint8)  # init
     for i, img in enumerate(images):
         if i == max_subplots:  # if last batch has fewer images than we expect
+            print("Batch size exceeds max_subplots")
             break
 
         block_x = int(w * (i // ns))
@@ -148,6 +148,7 @@ def plot_images(images, targets, paths=None, fname='images.png', names=None, max
         img = img.transpose(1, 2, 0)
         if scale_factor < 1:
             img = cv2.resize(img, (w, h))
+            print("image" + str(i) + "resized")
 
         mosaic[block_y:block_y + h, block_x:block_x + w, :] = img
         if len(targets) > 0:
