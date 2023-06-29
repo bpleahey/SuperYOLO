@@ -139,7 +139,6 @@ def plot_images(images, targets, paths=None, fname='images.png', names=None, max
     mosaic = np.full((int(ns * h), int(ns * w), 3), 255, dtype=np.uint8)  # init
     for i, img in enumerate(images):
         if i == max_subplots:  # if last batch has fewer images than we expect
-            print("Batch size exceeds max_subplots")
             break
 
         block_x = int(w * (i // ns))
@@ -148,7 +147,6 @@ def plot_images(images, targets, paths=None, fname='images.png', names=None, max
         img = img.transpose(1, 2, 0)
         if scale_factor < 1:
             img = cv2.resize(img, (w, h))
-            print("image" + str(i) + "resized")
 
         mosaic[block_y:block_y + h, block_x:block_x + w, :] = img
         if len(targets) > 0:
@@ -160,10 +158,12 @@ def plot_images(images, targets, paths=None, fname='images.png', names=None, max
 
             if boxes.shape[1]:
                 if boxes.max() <= 1.01:  # if normalized with tolerance 0.01
+                    print("scaling for boxes at path: ", paths[i])
                     boxes[[0, 2]] *= w  # scale to pixels
                     boxes[[1, 3]] *= h
                 elif scale_factor < 1:  # absolute coords need scale if image scales
                     boxes *= scale_factor
+                    print("scaling for absolute coords at path: ", paths[i])
             boxes[[0, 2]] += block_x
             boxes[[1, 3]] += block_y
             for j, box in enumerate(boxes.T):
