@@ -136,6 +136,7 @@ def plot_images(images, targets, paths=None, fname='images.png', names=None, max
         w = math.ceil(scale_factor * w)
 
     colors = color_list()  # list of colors
+    print(colors)
     mosaic = np.full((int(ns * h), int(ns * w), 3), 255, dtype=np.uint8)  # init
     for i, img in enumerate(images):
         if i == max_subplots:  # if last batch has fewer images than we expect
@@ -150,7 +151,6 @@ def plot_images(images, targets, paths=None, fname='images.png', names=None, max
 
         mosaic[block_y:block_y + h, block_x:block_x + w, :] = img
         if len(targets) > 0:
-            print("hit on image plot" + str(i))
             image_targets = targets[targets[:, 0] == i]
             boxes = xywh2xyxy(image_targets[:, 2:6]).T
             classes = image_targets[:, 1].astype('int')
