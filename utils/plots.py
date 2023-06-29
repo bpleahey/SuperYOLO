@@ -150,6 +150,7 @@ def plot_images(images, targets, paths=None, fname='images.png', names=None, max
 
         mosaic[block_y:block_y + h, block_x:block_x + w, :] = img
         if len(targets) > 0:
+            print("hit on image plot" + str(i))
             image_targets = targets[targets[:, 0] == i]
             boxes = xywh2xyxy(image_targets[:, 2:6]).T
             classes = image_targets[:, 1].astype('int')
