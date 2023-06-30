@@ -368,8 +368,8 @@ class LoadStreams:  # multiple IP or RTSP cameras
 def img2label_paths(img_paths):
     # Define label paths as a function of image paths
     sa, sb = os.sep + 'images' + os.sep, os.sep + 'labels' + os.sep  # /images/, /labels/ substrings
-    return [x.replace(sa,sb,1).replace('.' + x.split('.')[-1], '.txt') for x in img_paths]
-    #return [x.replace(sa, sb, 1).replace('_' + x.split('_')[-1], '.txt') for x in img_paths] #replace('.' + x.split('.')[-1], '.txt')
+    #return [x.replace(sa,sb,1).replace('.' + x.split('.')[-1], '.txt') for x in img_paths]
+    return [x.replace(sa, sb, 1).replace('_' + x.split('_')[-1], '.txt') for x in img_paths] #replace('.' + x.split('.')[-1], '.txt')
 
 def img2ir_paths(img_paths): #zjq
     # Define ir image paths as a function of image paths
@@ -406,10 +406,10 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 
         print(all_files[0])
 
-        if("frame101" in all_files[0]):
-            self.img_path = '../geese_vid_1/val/'
+        if("geese_vid_1_frame10.txt" in all_files[0]):
+            self.img_path = '../geese_vids_aligned_super_yolo/val/'
         else:
-            self.img_path = '../geese_vid_1/train/'
+            self.img_path = '../geese_vids_aligned_super_yolo/train/'
         
         self.img_files = [self.img_path + file for file in all_files if file.endswith('_co.jpg')]
 
@@ -444,7 +444,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                 x[:, 0] = 0
 
         n = len(shapes)  # number of images
-        bi = np.floor(np.arange(n) / batch_size).astype(np.int)  # batch index
+        bi = np.floor(np.arange(n) / batch_size).astype(int)  # batch index
         nb = bi[-1] + 1  # number of batches
         self.batch = bi  # batch index of image
         self.n = n
@@ -1148,7 +1148,7 @@ def load_mosaic9(self, index): #not use
 def replicate(img, labels):
     # Replicate labels
     h, w = img.shape[:2]
-    boxes = labels[:, 1:].astype(int)
+    boxes = labels[:, 1:].astype(np.int32)
     x1, y1, x2, y2 = boxes.T
     s = ((x2 - x1) + (y2 - y1)) / 2  # side length (pixels)
     for i in s.argsort()[:round(s.size * 0.5)]:  # smallest indices
